@@ -153,7 +153,7 @@
       
       // set price to default price
       let price = thisProduct.data.price;
-      console.log(price);
+      //console.log(price);
       
       // for every category (param)...
       for(let paramId in thisProduct.data.params){
@@ -189,6 +189,7 @@
       }
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
+      console.log(price);
     }
     
 
@@ -199,9 +200,6 @@
     initMenu: function(){
       const thisApp = this;
       console.log('thisApp.data:', thisApp.data);
-
-      const testProduct = new Product();
-      console.log('testProduct:', testProduct);
 
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
