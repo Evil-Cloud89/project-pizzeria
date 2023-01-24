@@ -321,6 +321,26 @@
     }
   }
   
+  class Cart{
+    constructor(element){
+      const thisCart = this;
+
+      thisCart.products = []; // Tablica do przechowywania produktów dodawanych do koszyka
+
+      thisCart.getElements(element);
+
+      console.log('new Cart', thisCart);
+    }
+
+    getElements(element){
+      const thisCart = this;
+
+      thisCart.dom = {}; // Element DOM 
+
+      thisCart.dom.wrapper = element;
+    }
+  }
+
   const app = {
     initMenu: function(){
       const thisApp = this;
@@ -337,6 +357,13 @@
       thisApp.data = dataSource;
     },
 
+    initCart: function(){ // Inicjowanie koszyka
+      const thisApp = this;
+
+      const cartElem = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+    },
+
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
@@ -347,6 +374,7 @@
       
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
     },
   };
 
