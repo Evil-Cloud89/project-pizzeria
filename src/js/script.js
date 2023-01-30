@@ -408,6 +408,9 @@
       thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
       thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
+      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
     }
 
     initActions(){
@@ -424,6 +427,11 @@
 
       thisCart.dom.productList.addEventListener('remove', function(event){
         thisCart.remove(event.detail.cartProduct);
+      });
+
+      thisCart.dom.form.addEventListener('submit', function(event){
+        event.preventDefault();
+        thisCart.sendOrder();
       });
     }
 
@@ -477,6 +485,35 @@
       const productsToRemove = thisCart.products.indexOf(event);
       thisCart.products.splice(productsToRemove, 1);
       thisCart.update();
+    }
+
+    sendOrder(){
+      const thisCart = this;
+      const url = settings.db.url + '/' + settings.db.orders;
+      const payload = {
+        address: thisCart.dom.address.value, // adres klienta wpisany w koszyku,
+        phone: thisCart.dom.phone.value, // numer telefonu wpisany w koszyku,
+        totalPrice: thisCart.totalPrice, // całkowita cena za zamówienie,
+        subtotalPrice: thisCart.subtotalPrice, // cena całkowita - koszt dostawy,
+        totalNumber: thisCart.totalNumber, // całkowita liczba sztuk,
+        deliveryFee: settings.cart.defaultDeliveryFee, // koszt dostawy,
+        products: [], // tablica obecnych w koszyku produktów.
+      };
+
+      for(let prod of thisCart.products) {
+        payload.products.push(prod.getData());
+      }
+      
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      fetch(url, options);
+      console.log('payLoad', payload);
     }
   }
 
@@ -537,6 +574,19 @@
         event.preventDefault;
         thisCartProduct.remove();
       });
+    }
+
+    getData(){
+      const thisCartProduct = this;
+      const productsForOrder = {
+        id: thisCartProduct.id,
+        amount: thisCartProduct.amount,
+        price: thisCartProduct.price,
+        priceSingle: thisCartProduct.priceSingle,
+        name: thisCartProduct.name,
+        params: thisCartProduct.params,
+      };
+      return productsForOrder;
     }
   }
 
