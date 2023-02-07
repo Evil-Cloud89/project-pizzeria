@@ -3,6 +3,7 @@ import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 // import AmountWidget from './components/AmountWidget.js';
 // import CartProduct from './components/CartProduct.js';
+import Booking from './components/Booking.js';
 
 const app = {
   initPages: function(){
@@ -110,17 +111,24 @@ const app = {
     });
   },
 
+  initBooking: function() {
+    const thisApp = this;
+    const widgetContainer = document.querySelector(select.containerOf.booking);         // Znajduje kontener widgetu do rezerwacji stron,
+    thisApp.booking = new Booking(widgetContainer);                                     // Tworzy nową instancję klasy Booking i przekazuje do konstruktora znaleziony wcześniej kontener
+  },
+
   init: function(){
     const thisApp = this;
     //console.log('*** App starting ***');
     //console.log('thisApp:', thisApp);
     //console.log('classNames:', classNames);
     //console.log('settings:', settings);
-    //console.log('templates:', templates);
+    console.log('templates:', templates);
 
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 
