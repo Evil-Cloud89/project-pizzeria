@@ -10,7 +10,7 @@ class Cart{
 
     thisCart.getElements(element);
     thisCart.initActions();
-    console.log('new Cart', thisCart);
+    //console.log('new Cart', thisCart);
   }
 
   getElements(element){
@@ -57,15 +57,12 @@ class Cart{
 
     console.log('adding product', menuProduct);
 
-    /* generate HTML based on tempalte */
-    const generatedHTML = templates.cartProduct(menuProduct);
+    const generatedHTML = templates.cartProduct(menuProduct);                     /* generate HTML based on tempalte */
 
-    /* create element using utils.createElementFromHTML */
-    const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+    const generatedDOM = utils.createDOMFromHTML(generatedHTML);                  /* create element using utils.createElementFromHTML */
     thisCart.dom.productList.appendChild(generatedDOM);
 
-    thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    console.log('thisCart.products', thisCart.products);
+    thisCart.products.push(new CartProduct(menuProduct, generatedDOM));           //console.log('thisCart.products', thisCart.products);
 
     thisCart.update();
   }
@@ -108,13 +105,13 @@ class Cart{
     const thisCart = this;
     const url = settings.db.url + '/' + settings.db.orders;
     const payload = {
-      address: thisCart.dom.address.value, // adres klienta wpisany w koszyku,
-      phone: thisCart.dom.phone.value, // numer telefonu wpisany w koszyku,
-      totalPrice: thisCart.totalPrice, // całkowita cena za zamówienie,
-      subtotalPrice: thisCart.subtotalPrice, // cena całkowita - koszt dostawy,
-      totalNumber: thisCart.totalNumber, // całkowita liczba sztuk,
-      deliveryFee: settings.cart.defaultDeliveryFee, // koszt dostawy,
-      products: [], // tablica obecnych w koszyku produktów.
+      address: thisCart.dom.address.value,                    // adres klienta wpisany w koszyku,
+      phone: thisCart.dom.phone.value,                        // numer telefonu wpisany w koszyku,
+      totalPrice: thisCart.totalPrice,                        // całkowita cena za zamówienie,
+      subtotalPrice: thisCart.subtotalPrice,                  // cena całkowita - koszt dostawy,
+      totalNumber: thisCart.totalNumber,                      // całkowita liczba sztuk,
+      deliveryFee: settings.cart.defaultDeliveryFee,          // koszt dostawy,
+      products: [],                                           // tablica obecnych w koszyku produktów.
     };
 
     for(let prod of thisCart.products) {
@@ -129,8 +126,7 @@ class Cart{
       body: JSON.stringify(payload),
     };
 
-    fetch(url, options);
-    console.log('payLoad', payload);
+    fetch(url, options);                                      //console.log('payLoad', payload);
   }
 }
 

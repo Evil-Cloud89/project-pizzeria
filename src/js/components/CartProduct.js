@@ -2,8 +2,8 @@ import {select} from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 
 
-class CartProduct{ // Ma zajmować się produktami dodanymi do koszyka
-  constructor(menuProduct, element){ // menuProduct - referencja do obiektu podsumowania; element - referencja do utworzonego dla tego produktu elementu HTML (generatedDOM)
+class CartProduct{                                   // Ma zajmować się produktami dodanymi do koszyka
+  constructor(menuProduct, element){                 // menuProduct - referencja do obiektu podsumowania; element - referencja do utworzonego dla tego produktu elementu HTML (generatedDOM)
     const thisCartProduct = this;
     thisCartProduct.id = menuProduct.id;
     thisCartProduct.name = menuProduct.name;
