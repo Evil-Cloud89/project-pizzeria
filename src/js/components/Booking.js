@@ -168,6 +168,12 @@ class Booking{
       hourPicker: element.querySelector(select.widgets.hourPicker.wrapper),
       tables: element.querySelectorAll(select.booking.tables),
       tableContainer: element.querySelector(select.containerOf.tableContainer),
+      duration: element.querySelector(select.booking.duration),
+      ppl: element.querySelector(select.booking.ppl),
+      starters: element.querySelectorAll(select.booking.starters),
+      phone: element.querySelector(select.booking.phone),
+      address: element.querySelector(select.booking.address),
+      bookTableBtn: element.querySelector(select.booking.bookTableBtn),
     };
   }
 
@@ -187,8 +193,6 @@ class Booking{
       thisBooking.updateDOM();
     });
 
-    const selectedTable = [];
-
     thisBooking.dom.tableContainer.addEventListener('click', function(event){
       event.preventDefault();
       const table = event.target;
@@ -207,10 +211,76 @@ class Booking{
         thisBooking.updateDOM();
         const tableId = table.getAttribute(settings.booking.tableIdAttribute);
         table.classList.add(classNames.booking.tableSelected);
-        selectedTable.pop();
-        selectedTable.push(tableId);
+        thisBooking.selectedTable = tableId;
       }
     });
+    
+    const validatePhoneNumber = /^\d{9}$/;
+
+    thisBooking.dom.bookTableBtn.addEventListener('click', function(event){
+      event.preventDefault();
+
+      if (!thisBooking.selectedTable){
+        return window.alert('Please, choose a table.');
+      }
+
+      if (!thisBooking.dom.phone.value.match(validatePhoneNumber)) {
+        return window.alert('Please, enter a valid phone number (Use 9 digits).');
+      }
+
+      if (thisBooking.dom.address.value.length < 7){
+        return window.alert('Please, enter a valid address (Use more than 7 letters and numbers).');
+      }
+
+      thisBooking.sendBooking();
+    });
+  }
+
+  sendBooking(){
+
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const payload = {
+      date: thisBooking.date,                         // data wybrana w datePickerze
+      hour:  utils.numberToHour(thisBooking.hour),    // godzina wybrana w hourPickerze (w formacie HH:ss)
+      table: thisBooking.selectedTable,               // numer wybranego stolika (lub null jeśli nic nie wybrano)
+      duration: thisBooking.hoursAmount.value,        // liczba godzin wybrana przez klienta
+      ppl: thisBooking.peopleAmount.value,            // liczba osób wybrana przez klienta
+      starters: [],
+      phone: thisBooking.dom.phone.value,             // numer telefonu z formularza,
+      address: thisBooking.dom.address.value,         // adres z formularza
+    };
+
+    for(let starter of thisBooking.dom.starters) {
+      if(starter.checked){
+        payload.starters.push(starter.value);
+      }
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(url, options)
+      .then(function (response){
+        return response.json();
+      }).then(function (parsedResponse){
+        alert('Your table has been booked!');
+        console.log('parsedResponse', parsedResponse);
+        thisBooking.makeBooked(
+          parsedResponse.date, 
+          parsedResponse.hour, 
+          parsedResponse.duration,
+          parsedResponse.table
+        );
+        thisBooking.updateDOM();
+      });
   }
 }
 
