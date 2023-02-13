@@ -4,6 +4,7 @@ import Cart from './components/Cart.js';
 // import AmountWidget from './components/AmountWidget.js';
 // import CartProduct from './components/CartProduct.js';
 import Booking from './components/Booking.js';
+import HomePage from './components/HomePage.js';
 
 const app = {
   initPages: function(){
@@ -117,6 +118,12 @@ const app = {
     thisApp.booking = new Booking(widgetContainer);                                     // Tworzy nową instancję klasy Booking i przekazuje do konstruktora znaleziony wcześniej kontener
   },
 
+  initHome: function(){
+    const thisApp = this;
+    const homeContainer = document.querySelector(select.containerOf.homePage);
+    thisApp.homePage = new HomePage(homeContainer);
+  },
+  
   init: function(){
     const thisApp = this;
     //console.log('*** App starting ***');
@@ -129,6 +136,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initHome();
   },
 };
 

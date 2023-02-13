@@ -9,6 +9,7 @@
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="./vendor/range-slider.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,6 +22,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
       </div>
@@ -62,6 +64,9 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div class="home-wrapper container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -69,6 +74,106 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
+
+<script id="template-home-page" type="text/x-handlebars-template">
+  <div class="container">
+    <div class="home-page top-row">
+      <div class="home-order">
+        <h1>ORDER ONLINE</h1>
+        <a href="#order">
+          <img src="./images/home/pizza-1.jpg">
+        </a>
+      </div>
+      <div>
+        <h1>BOOK A TABLE</h1>
+        <a href="#booking">
+          <img src="./images/home/pizza-2.jpg">
+        </a>
+      </div>
+    </div>
+    <div class="home-page bottom-row">
+      <h1>OPENING HOURS:</h1>
+      <p>TUE - SUN, 12PM - 12AM</p>
+    </div>
+    <div class="main-carousel">
+      <div class="carousel-cell">
+        <img src="./images/home/pizza-3.jpg">
+        <div class="carousel-text">
+          <h2>Lorem ipsum!</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae incidunt minus sint odit, animi, illo officiis, labore aperiam assumenda impedit delectus a itaque quos expedita dolor ullam. Modi, quo iusto.</p>
+          <h4>Lorem ipsum</h4>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <img src="./images/home/pizza-3.jpg">
+        <div class="carousel-text">
+          <h2>Lorem ipsum!</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae incidunt minus sint odit, animi, illo officiis, labore aperiam assumenda impedit delectus a itaque quos expedita dolor ullam. Modi, quo iusto.</p>
+          <h4>Lorem ipsum</h4>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <img src="./images/home/pizza-3.jpg">
+        <div class="carousel-text">
+          <h2>Lorem ipsum!</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae incidunt minus sint odit, animi, illo officiis, labore aperiam assumenda impedit delectus a itaque quos expedita dolor ullam. Modi, quo iusto.</p>
+          <h4>Lorem ipsum</h4>
+        </div>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="galler-row">
+        <div class="gallery-box">
+          <img src="./images/home/pizza-4.jpg">
+          <div class="gallery-icon">
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+            <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+        <div class="gallery-box">
+          <img src="./images/home/pizza-5.jpg">
+          <div class="gallery-icon">
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+            <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+        <div class="gallery-box">
+          <img src="./images/home/pizza-6.jpg">
+          <div class="gallery-icon">
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+            <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="gallery-row">
+        <div class="gallery-box">
+          <img src="./images/home/pizza-7.jpg">
+          <div class="gallery-icon">
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+            <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+        <div class="gallery-box">
+          <img src="./images/home/pizza-8.jpg">
+          <div class="gallery-icon">
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+            <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+        <div class="gallery-box">
+          <img src="./images/home/pizza-9.jpg">
+          <div class="gallery-icon">
+            <a href="#"><i class="fa-solid fa-heart"></i></a>
+            <a href="#"><i class="fa-solid fa-share-nodes"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <a href="#"><p>Viev more on Instagram</p></a>
+    </footer>
+  </div>
+</script>
 
   <script id="template-cart-product" type="text/x-handlebars-template">
     <li>
@@ -245,6 +350,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="./vendor/range-slider.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
