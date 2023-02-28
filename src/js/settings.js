@@ -12,6 +12,7 @@ export const select = {
     booking: '.booking-wrapper',
     tableContainer: '.floor-plan',
     homePage: '.home-wrapper',
+    carousel: '.main-carousel'
   },
   all: {
     menuProducts: '#product-list > .product',

@@ -11,7 +11,7 @@
 
 }
 
-.home-links {
+.order-link, .booking-link {
   width: 300px;
   height: 120px;
   margin: 0px 2px;
@@ -53,7 +53,7 @@
   h1 {
     text-align: center;
     color: $color-light;
-    padding: 20 px;
+    padding: 15px;
     margin-top: -2px;
     margin-bottom: -20px;
   }
@@ -64,9 +64,46 @@
   }
 }
 
+.carousel-cell {
+  display: flex;
+  flex-direction: row;
+  margin-top: -10px;
+}
+
+.carousel-cell {
+    img {
+      margin: 0;
+      height: 50%;
+      width: 50%;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+}
+
+.carousel-text {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  h2 {
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 14px;
+    text-align: justify;
+  }
+
+  h4 {
+    font-style: italic;
+    font-weight: 700;
+    font-size: 14px;
+  } 
+}
+
 .gallery {
   display: inline-block;
-  width: 100%;  
+  width: 100%;
+  margin-top: 50px;  
 }
 
 .gallery-row {
@@ -122,4 +159,11 @@
   margin-left: 25px;
   visibility: hidden;
   color: $color-main;
+}
+
+.footer {
+  a {
+    color: $color-main;
+    font-size: 14px;
+  }
 }
