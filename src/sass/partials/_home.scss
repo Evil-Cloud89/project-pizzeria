@@ -68,16 +68,14 @@
   display: flex;
   flex-direction: row;
   margin-top: -10px;
-}
 
-.carousel-cell {
-    img {
-      margin: 0;
-      height: 50%;
-      width: 50%;
-      object-fit: cover;
-      border-radius: 5px;
-    }
+  img {
+    margin: 0;
+    height: 50%;
+    width: 50%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
 }
 
 .carousel-text {
